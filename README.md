@@ -11,10 +11,12 @@ Simple example of a C# GraphQL api using Chillicream Hotchocolate package
 ## Example
 Run this query:
 
-`query{
+```
+query{
   userByEmail(email: "test") {
     id
     name
     email
   }
-}`
+}
+```
