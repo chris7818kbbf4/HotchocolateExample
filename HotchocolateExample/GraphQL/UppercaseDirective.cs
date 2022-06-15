@@ -11,14 +11,14 @@ public class UppercaseDirective: DirectiveType
         descriptor.Location( DirectiveLocation.ArgumentDefinition | DirectiveLocation.FieldDefinition);
         
         // This is essentially the function which runs when the directive is applied.
-        descriptor.Use(next=>context=>
-        {
+        descriptor.Use(next=> async context=>
+        { 
+            await next(context);
 
-            var originalValue = context.Selection.Field.Resolver.Invoke(context).Result as string;
-
-            context.Result = originalValue.ToUpper();
-            
-            return next(context);
+            if(context.Result is string s) 
+            {
+                context.Result = s.ToUpper();
+            }
         });
     }
 }
